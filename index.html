@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WebSocket Data Streaming</title>
+  <style>
+    #message-box {
+      height: 300px; /* Adjust the height as needed */
+      overflow: auto;
+      border: 1px solid #ccc;
+      padding: 10px;
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <h1>WebSocket Data Streaming</h1>
+  <div id="message-box"></div>
+
+  <script>
+    const socket = new WebSocket('ws://localhost:8000'); // Replace with your WebSocket server URL
+
+    socket.onopen = function() {
+      console.log('WebSocket connection opened');
+    };
+
+    socket.onmessage = function(event) {
+      const data = JSON.parse(event.data);
+
+      if (data.type === "FULL_ORDERBOOK_UPDATE") {
+        const messageBox = document.getElementById('message-box');
+
+        // Create a new message element
+        const message = document.createElement('div');
+        message.textContent = JSON.stringify(data);
+
+        // Append the message to the message box
+        messageBox.appendChild(message);
+
+        // Scroll to the bottom of the message box
+        messageBox.scrollTop = messageBox.scrollHeight;
+      }
+    };
+
+    socket.onerror = function(error) {
+      console.error('WebSocket error:', error);
+    };
+
+    socket.onclose = function() {
+      console.log('WebSocket connection closed. Refresh the page to reconnect.');
+    };
+  </script>
+</body>
+</html>
