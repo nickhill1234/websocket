@@ -1,6 +1,6 @@
 const crypto = require("crypto")
 const WebSocket = require("ws")
-const wss = new WebSocket.Server({port:8000})
+const wss = new WebSocket.Server({ port: 8000 });
 
 const apiKey = "e7510a1f624e9f2fa5d059c8916091eac03cefedde2cab096e5daec2ac7ae11a"
 const apiKeySecret = "35c820252c33aadf32ed7c99f0dd704cc63990c5c8b24b1a153d71abbaf97015"
