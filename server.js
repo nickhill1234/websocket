@@ -1,21 +1,6 @@
-
-const http = require('http');
-const fs = require('fs');
-const WebSocket = require('ws');
-const crypto = require('crypto');
-
-// Read the index.html file
-const indexHtml = fs.readFileSync('index.html', 'utf8');
-
-// Create a basic HTTP server
-const server = http.createServer((req, res) => {
-  // Serve the index.html file for all requests
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.end(indexHtml);
-});
-
-// Create a WebSocket server
-const wss = new WebSocket.Server({ server });
+const crypto = require("crypto")
+const WebSocket = require("ws")
+const wss = new WebSocket.Server({ port: process.env.PORT || 8000 });
 
 const apiKey = "e7510a1f624e9f2fa5d059c8916091eac03cefedde2cab096e5daec2ac7ae11a"
 const apiKeySecret = "35c820252c33aadf32ed7c99f0dd704cc63990c5c8b24b1a153d71abbaf97015"
@@ -145,8 +130,3 @@ function connectToTrade() {
 }
 connectToTrade()
 
-module.exports = {
-  updateOrderbookSnapshot,
-  connectToTrade,
-  wss, // Exporting WebSocket server instance
-};

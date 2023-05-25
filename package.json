@@ -2,9 +2,9 @@
   "name": "websocket",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "websocket.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node websocket.js"
   },
   "keywords": [],
   "author": "",
