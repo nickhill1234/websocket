@@ -130,3 +130,8 @@ function connectToTrade() {
 }
 connectToTrade()
 
+module.exports = {
+  updateOrderbookSnapshot,
+  connectToTrade,
+  wss, // Exporting WebSocket server instance
+};
